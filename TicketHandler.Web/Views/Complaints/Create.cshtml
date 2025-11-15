@@ -1,0 +1,88 @@
+﻿@model TicketHandler.core.Complaints
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container d-flex justify-content-center align-content-center">
+    <div class="col-md-10">
+        <div class="card shadow-sm border-0 rounded-0 glass text-center p-4 bg-light-pink text-black card body">
+            <h2 class="mb-4 text-center">Add New Complain</h2>
+        </div>
+    </div>
+</div>
+<hr />
+<br />
+        <form asp-action="Create" class="d-flex justify-content-center">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="container">
+                <div class="row mb-5">
+                    <label class="col-sm-2 col-form-label d-flex justify-content-center align-content-center" asp-for="Subject" for="subject">Subject</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control " id="Subject" asp-for="Subject" />
+                        <span asp-validation-for="Subject" class="text-danger"></span>
+                    </div>
+                    <label class="col-sm-2 col-form-label d-flex justify-content-center align-content-center" asp-for="Description" for="des">Description</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control " id="des" asp-for="Description" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mb-5">
+                    <label class="col-sm-2 col-form-label d-flex justify-content-center align-content-center" asp-for="Created_on" for="CreatedOn">Created On</label>
+                    <div class="col-sm-3">
+                        <input type="datetime-local" class="form-control " id="CreatedOn" asp-for="Created_on"/>
+                        <span asp-validation-for="Created_on" class="text-danger"></span>
+                    </div>
+                    <label class="col-sm-2 col-form-label d-flex justify-content-center align-content-center" asp-for="Expected_Date" for="expectdate">Expected Date</label>
+                    <div class="col-sm-3">
+                        <input type="datetime-local" class="form-control " id="expectdate" asp-for="Expected_Date" />
+                        <span asp-validation-for="Expected_Date" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mb-5">
+                    <label class="col-sm-2 col-form-label d-flex justify-content-center align-content-center" asp-for="Priority" for="priority">Priority</label>
+                    <div class="col-sm-3">
+                        <select asp-for="Priority" class="form-select" id="priority">
+                            <option value="">Select Priority</option>
+                            <option value="High">High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                        <span asp-validation-for="Priority" class="text-danger"></span>
+                    </div>
+                    <label class="col-sm-2 col-form-label d-flex justify-content-center align-content-center" for="stat">Status</label>
+                    <div class="col-sm-3">
+                        <select asp-for="Status" class="form-select" id="stat">
+                            <option value="">Select Status</option>
+                            <option value="New">New</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Closed">Resolved</option>
+                        </select>
+                        <span asp-validation-for="Status" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mb-5">
+                    <label class="col-sm-2 col-form-label d-flex justify-content-center align-content-center" asp-for="AssignTo" for="assignto">Assign to</label>
+                    <div class="col-sm-3">
+                        <select asp-for="AssignTo" asp-items="ViewBag.Users" class="form-select">
+                            <option value="">Assign complain</option>
+                        </select>
+                        <span asp-validation-for="AssignTo" class="text-danger"></span>
+                    </div>
+                </div>
+                <br />
+                <div class="row mb-3">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-success w-100">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

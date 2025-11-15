@@ -1,0 +1,78 @@
+﻿@using System.Security.Claims
+@{
+    var userrole = Context.User.FindFirst(ClaimTypes.Role)?.Value;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Ticket Handler</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/TicketHandler.Web.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light navbar-custom border-bottom mb-3">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarUnderlineExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <a class="navbar-brand" asp-controller="Complaints" asp-action="Index">
+                    <img class="logo-circle" style="--focal:40% 20%;" src="/css/logo6.png"/>
+                    Ticket Management System
+                </a>
+
+                <div class="collapse navbar-collapse" id="navbarUnderlineExample">
+                    <ul class="navbar-nav ms-auto">
+                        @{
+                            if (Context.User.Identity?.IsAuthenticated ?? false)
+                            {
+                                <li class="nav-item"><a class="nav-link" asp-action="Index" asp-controller="Complaints">Home</a></li>
+                                <li class="nav-item"><a class="nav-link" asp-action="Create" asp-controller="Complaints">Complain</a></li>
+                                <li class="nav-item dropdown">
+                                    @{
+                                        if (userrole == "Admin")
+                                        {
+                                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">User Control</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" asp-action="Index" asp-controller="Userdatas">All Users</a></li>
+                                                <li><a class="dropdown-item" asp-action="Create" asp-controller="Userdatas">Add Users</a></li>
+                                                <li><hr class="dropdown-divider" /></li>
+                                                <li><a class="dropdown-item" asp-action="ShowClosedRec" asp-controller="Complaints">Closed Records</a></li>
+                                            </ul>
+                                        }
+                                     }
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+
+                @await Html.PartialAsync("_LoginPartial")
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="navbar navbar-expand-sm navbar-light navbar-custom border-top mt-4">
+        <div class="container-fluid justify-content-center">
+            <span class="navbar-text text-muted small">
+                © @DateTime.Now.Year Ticket Management System — All rights reserved.
+            </span>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

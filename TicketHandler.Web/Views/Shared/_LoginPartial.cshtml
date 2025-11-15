@@ -1,0 +1,54 @@
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Identity
+
+@{
+    var userrole = Context.User.FindFirst(ClaimTypes.Role)?.Value;
+}
+
+
+@if (Context.User.Identity?.IsAuthenticated ?? false)
+{
+    <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false">
+                @{
+                    if (userrole == "User")
+                    {
+                        <img src="~/css/User.jpg" alt="Profile" class="logo-circle me-2" style="--focal:40% 20%;" />
+                    }
+                    else if (userrole == "Agent")
+                    {
+                        <img src="~/css/Agent2.jpg" alt="Profile" class="logo-circle me-2" style="--focal:40% 20%;" />
+                    }
+                    else
+                    {
+                        <img src="~/css/Admin 2.jpg" alt="Profile" class="logo-circle me-2" style="--focal:40% 20%;" />
+                    }
+                }
+                <span>@Context.User.Identity.Name</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="userDropdown">
+                <li><a class="dropdown-item" asp-action="Profile" asp-controller="Userdatas">View Profile</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                    <form asp-controller="Userdatas" asp-action="LogOut" method="post" id="LogoutForm">
+                        <button type="submit" class="dropdown-item text-danger">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+    </ul>
+}
+
+else
+{
+    <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Userdatas" asp-action="Create">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Userdatas" asp-action="Login">Login</a>
+        </li>
+    </ul>
+}

@@ -1,0 +1,83 @@
+﻿@model IEnumerable<TicketHandler.core.Userdata>
+
+@{
+    ViewData["Title"] = "User List";
+}
+
+<div class="container d-flex justify-content-center align-content-center">
+    <div class="col-md-10">
+        <div class="card shadow-sm border-0 rounded-0 glass text-center p-4 bg-light-blue text-black card body">
+            <h2 class="mb-4 text-center">All Users</h2>
+        </div>
+    </div>
+</div>
+
+
+<div class="container mt-4">
+
+    <div class="row g-4 justify-content-center">
+        <div class="col-md-3">
+            <div class="card shadow-sm border-0 rounded-4 glass text-center p-3 bg-light-green text-black">
+                <div class="card-body">
+                    <h6 class="mb-2">User</h6>
+                    <h3 class="fw-bold">@ViewBag.user</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm border-0 rounded-4 glass text-center p-3 bg-light-yellow text-black">
+                <div class="card-body">
+                    <h6 class="mb-2">Agent</h6>
+                    <h3 class="fw-bold">@ViewBag.agent</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container d-flex justify-content-center">
+<table class="table ">
+    <thead class="text-center">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Role)
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody class="text-center">
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+            <td>
+                        <a class="btn btn-outline-success btn-glass text-black" asp-action="Edit" asp-route-id="@item.UserId">Edit</a> |
+                        <a class="btn btn-outline-primary btn-glass text-black" asp-action="Details" asp-route-id="@item.UserId">Details</a> |
+                        <a class="btn btn-outline-danger btn-glass text-black" asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>

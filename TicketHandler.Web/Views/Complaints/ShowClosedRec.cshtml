@@ -1,0 +1,154 @@
+﻿@model IEnumerable<TicketHandler.core.ClosedTicket>
+
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+
+<div class="col-md-12 justify-content-md-center ">
+    <div class="card shadow-sm border-0 rounded-4 glass text-center p-3 bg-light-blue text-black card body">
+        @* <div class="card-body"> *@
+        <h2 class="mb-4 text-center">Overview</h2>
+        @* </div> *@
+    </div>
+</div>
+
+<div class="container mt-4">
+
+    <div class="row g-4 justify-content-center">
+
+        <div class="col-md-3">
+            <div class="card shadow-sm border-0 rounded-4 glass text-center p-3 bg-light-orange text-black">
+                <div class="card-body">
+                    <h6 class="mb-2 ">Total</h6>
+                    <h3 class="fw-bold">@ViewBag.Total</h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<br />
+<br />
+@{
+    if (ViewBag.Role == "User")
+    {
+
+        <div class="card shadow-sm border-0 rounded-4 text-center p-3 bg-light-pink glass text-black">
+            <table class="table">
+                <thead>
+                    <tr class="text-black">
+                        <th>
+                            @Html.DisplayNameFor(model => model.Subject)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Created_on)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Priority)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Expected_Date)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AssignTo)
+                        </th>
+                        <th>
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="text-black">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Subject)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Created_on)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Priority)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Expected_Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AssignTo)
+                            </td>
+                            <td>
+                                <a class="btn btn-success text-black" asp-action="DetailClosedRec" asp-route-id="@item.ComplaintId">Details</a> |
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+    else
+    {
+
+        <div class="card shadow-sm border-0 rounded-4 text-center p-3 bg-light-pink glass text-black">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Subject)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Created_on)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Priority)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Expected_Date)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UserName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AssignTo)
+                        </th>
+                        <th>
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Subject)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Created_on)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Priority)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Expected_Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AssignTo)
+                            </td>
+                            <td>
+                                <a class="btn btn-success" asp-action="DetailClosedRec" asp-route-id="@item.ComplaintId">Details</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+}
+

@@ -1,0 +1,76 @@
+﻿@model TicketHandler.core.Userdata
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container d-flex justify-content-center align-content-center">
+    <div class="col-md-10">
+        <div class="card shadow-sm border-0 rounded-0 glass text-center p-4 bg-light-blue text-black card body">
+            <h2 class="mb-4 text-center">Add New User</h2>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<br />
+
+@if (ViewBag.Message != null)
+{
+    <div class="form-control" style="color:red;">@ViewBag.Message</div>
+}
+<br />
+
+        <form asp-action="Create" class="d-flex justify-content-center">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="container">
+                <div class="row mb-5">
+                    <label class="col-sm-2 col-form-label d-flex justify-content-center align-content-center" asp-for="UserName" for="username">UserName</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control " id="username" asp-for="UserName" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <label class="col-sm-2 col-form-label d-flex justify-content-center align-content-center" asp-for="Email" for="email">Email</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control " id="email" asp-for="Email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mb-5">
+                    <label class="col-sm-2 col-form-label d-flex justify-content-center align-content-center" asp-for="Password" for="pass">Password</label>
+                    <div class="col-sm-3">
+                        <input type="password" class="form-control " id="pass" asp-for="Password" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <label class="col-sm-2 col-form-label d-flex justify-content-center align-content-center" asp-for="ConPassword" for="conpass">Confirm Password</label>
+                    <div class="col-sm-3">
+                        <input type="password" class="form-control " id="conpass" asp-for="ConPassword" />
+                        <span asp-validation-for="ConPassword" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mb-5">
+                    <label class="col-sm-2 col-form-label d-flex justify-content-center align-content-center" asp-for="Role" for="role">Role</label>
+                    <div class="col-sm-3">
+                        <select asp-for="Role" class="form-select" id="role">
+                            <option value="">Select Role</option>
+                            <option value="User">User</option>
+                            <option value="Agent">Agent</option>
+                        </select>
+                        <span asp-validation-for="Role" class="text-danger"></span>
+                    </div>
+                </div>
+                <br />
+                <div class="row mb-3">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-success w-100">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

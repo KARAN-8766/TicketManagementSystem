@@ -1,0 +1,57 @@
+﻿body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.login-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Left section */
+.login-left {
+    flex: 1;
+    background: linear-gradient(135deg, #0a1128, #1e2a78);
+    color: #fff;
+    padding: 2rem;
+    text-align: center;
+}
+
+    .login-left .logo {
+        width: 150px;
+        height: auto;
+        filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
+    }
+
+/* Right section */
+.login-right {
+    flex: 1;
+    background: #f8f9fa;
+    display: flex;
+}
+
+.login-card {
+    width: 80%;
+    max-width: 380px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.4);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+    .login-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+    }
+
+.form-control {
+    border-radius: 0.75rem;
+    border: 1px solid rgba(0,0,0,0.2);
+}
+
+    .form-control:focus {
+        box-shadow: 0 0 8px rgba(30, 42, 120, 0.3);
+        border-color: #1e2a78;
+    }

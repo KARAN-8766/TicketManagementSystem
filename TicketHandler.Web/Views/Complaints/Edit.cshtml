@@ -1,0 +1,108 @@
+﻿@model TicketHandler.core.Complaints
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+@if (ViewBag.DebugErrors != null)
+{
+    <div class="alert alert-warning">
+        <strong>Debug Validation Errors:</strong>
+        <ul>
+            @foreach (var e in ViewBag.DebugErrors)
+            {
+                foreach (var err in e.Errors)
+                {
+                    <li><b>@e.Field:</b> @err</li>
+                }
+            }
+        </ul>
+    </div>
+}
+<h4>Complaints</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ComplaintId" />
+            <div class="form-group">
+                <label asp-for="Subject" class="control-label"></label>
+                <input asp-for="Subject" class="form-control" readonly/>
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" readonly/>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Created_on" class="control-label"></label>
+                <input asp-for="Created_on" class="form-control" readonly/>
+                <span asp-validation-for="Created_on" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Priority" class="control-label"></label>
+                <input asp-for="Priority" class="form-control" readonly/>
+                <span asp-validation-for="Priority" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Expected_Date" class="control-label"></label>
+                @{
+                    if (ViewBag.Role == "Admin")
+                    {
+                        <input asp-for="Expected_Date" class="form-control" />
+                    }
+                    else
+                    {
+                        <input asp-for="Expected_Date" class="form-control" readonly />
+                    }
+                }
+                <span asp-validation-for="Expected_Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-select" id="priority">
+                    <option value="">Select Status</option>
+                    <option value="New">New</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Closed">Resolved</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssignTo" class="control-label"></label>
+                @{
+                    if (ViewBag.Role == "Admin")
+                    {
+                        <input asp-for="AssignTo" class="form-control" />
+                    }
+                    else
+                    {
+                        <input asp-for="AssignTo" class="form-control" readonly />
+                    }
+                }
+                <span asp-validation-for="AssignTo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" readonly/>
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

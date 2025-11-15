@@ -1,0 +1,365 @@
+﻿html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+
+.bg-light-blue {
+    background-color: #007bff; /* Bootstrap primary blue */
+    background: linear-gradient(135deg, #007bff, #339af0);
+}
+
+.bg-light-orange {
+    background-color: #fd7e14;
+    background: linear-gradient(135deg, #fd7e14, #ffa94d);
+}
+
+.bg-light-yellow {
+    background-color: #f6e72a;
+    background: linear-gradient(135deg, #f6e72a, #f9ee65);
+}
+
+.bg-light-green {
+    background-color: #28a745;
+    background: linear-gradient(135deg, #28a745, #69db7c);
+}
+
+.bg-light-pink {
+    background-color: #ff8531;
+/*    background: linear-gradient(135deg, #ff8531, #ff6361);*/
+}
+
+.card {
+    border-radius: 2rem;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    color: #fff;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    .card h6 {
+        font-weight: 500;
+        opacity: 0.9;
+    }
+
+    .card.glass {
+        position: relative;
+        overflow: visible;
+        border-radius: 0.75rem;
+        color: #fff;
+        border: 1px solid rgba(255,255,255,0.12); /* faint light border */
+        background-clip: padding-box;
+        /* Slightly translucent neutral fallback */
+        background-color: rgba(255,255,255,0.04);
+        /* subtle shadow layers: soft ambient + tighter rim */
+        box-shadow: 0 20px 40px rgba(11, 22, 40, 0.18), /* deep soft shadow */
+        0 2px 6px rgba(11, 22, 40, 0.08); /* small crisp shadow */
+        transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+        /* Hover lift */
+        .card.glass:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 34px 80px rgba(11,22,40,0.22), 0 6px 14px rgba(11,22,40,0.10);
+        }
+
+        /* Glossy highlight (pseudo-element) */
+        .card.glass::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            border-radius: inherit;
+            /* thin glossy streak at top-left */
+            background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.00) 35%);
+            mix-blend-mode: overlay;
+        }
+
+    /* Backdrop blur (frosted glass) — effective when page has background imagery or color */
+    .card.glass {
+        -webkit-backdrop-filter: blur(8px) saturate(120%);
+        backdrop-filter: blur(8px) saturate(120%);
+    }
+
+/* =========================
+   Colored glass variations
+   ========================= */
+
+/* Blue glass */
+.bg-light-blue.glass {
+    background: linear-gradient(135deg, rgba(0,123,255,.9) 0%, rgba(51,154,240,0.5) 100%);
+    border-color: rgba(255,255,255,0.12);
+}
+
+/* Orange/pink glass (table card) — stronger tint, not white */
+.bg-light-pink.glass {
+    background: linear-gradient(135deg, rgba(255,133,49,.2) 0%, rgba(255,99,97,0.8) 100%);
+/*    border-color: rgba(255,255,255,0.10);*/
+/*    color: #fff;*/
+}
+
+/* Green glass */
+.bg-light-green.glass {
+    background: linear-gradient(135deg, rgba(40,167,69,.9) 0%, rgba(105,219,124,0.5) 100%);
+}
+
+/* Orange glass */
+.bg-light-orange.glass {
+    background: linear-gradient(135deg, rgba(253,126,20,.9) 0%, rgba(255,169,77,0.5) 100%);
+}
+
+/* Yellow glass (use sparingly, ensure contrast) */
+.bg-light-yellow.glass {
+    background: linear-gradient(135deg, rgba(246,231,42,.9) 0%, rgba(249,238,101,0.5) 100%);
+    color: #222; /* darker text for yellow */
+}
+
+/* Typography inside cards */
+.card.glass .card-body h6 {
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    opacity: 0.95;
+}
+
+/* Container for table: subtle glass-ish panel */
+.table-panel {
+    border-radius: 2rem;
+    overflow: hidden;
+    padding: 0.5rem;
+    background: rgba(255,255,255,0.03);
+    box-shadow: 0 10px 24px rgba(11,22,40,0.06);
+    border: 2px solid rgba(255,255,255,0.04);
+}
+
+/* Table itself */
+.table.custom {
+    width: 100%;
+    border-collapse: collapse;
+    background: transparent;
+}
+
+    /* Header — dark, professional */
+    .table.custom thead th {
+        background: rgba(25, 39, 72, 0.95); /* deep navy header */
+        color: #ffffff;
+        font-weight: 600;
+        border-bottom: none;
+        padding: 12px 14px;
+    }
+
+    /* Rows — alternate subtle tint */
+    .table.custom tbody tr:nth-child(even) {
+        background: rgba(3, 10, 34, 0.02); /* very subtle */
+    }
+
+    .table.custom tbody tr:hover {
+        background: rgba(3,10,34,0.04);
+    }
+
+    /* Cells */
+    .table.custom td {
+        padding: 12px 14px;
+        vertical-align: middle;
+        color: rgba(255,255,255,0.9); /* keep good contrast on dark header background */
+    }
+
+/* Small responsive: reduce padding */
+@media (max-width: 768px) {
+    .table.custom td, .table.custom th {
+        padding: 8px 10px;
+    }
+}
+
+/*Logo Class*/
+.logo-crop {
+    width: 70px; /* visible box width */
+    aspect-ratio: 1 / 1; /* keeps square - change to 3/1, 16/9 etc */
+    background-image: var(--img);
+    background-repeat: no-repeat;
+    background-size: cover; /* crop & fill the box */
+    background-position: var(--focal); /* focal point, 'x% y%' */
+    border-radius: 8px; /* optional rounding */
+    overflow: hidden;
+    display: block;
+}
+
+.logo-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-image: var(--img);
+    background-size: cover;
+    background-position: var(--focal);
+    overflow: hidden;
+}
+
+.logo-img {
+    width: 220px; /* box size */
+    height: 120px;
+    object-fit: cover; /* crop & fill */
+    object-position: var(--pos); /* focal position: 'x% y%' */
+    border-radius: 6px; /* optional */
+    display: block;
+}
+
+/* Navbar base */
+.navbar-custom {
+    background-color: #f8f9fa; /* light gray-white minimalist tone */
+    padding-left: 2rem; /* left space */
+    padding-right: 2rem; /* right space */
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /
+    font-weight: 600;
+    color: #212529 !important;
+}
+
+
+.navbar-nav .nav-link {
+    color: #343a40 !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+}
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+        color: #0d6efd !important;
+    }
+
+.navbar {
+    min-height: 60px;
+}
+
+.profile-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+}
+
+/* optional hover and dropdown styling */
+.dropdown-menu {
+    border-radius: 8px;
+    padding: 0.5rem 0;
+}
+
+.dropdown-item {
+    font-weight: 500;
+    color: #343a40;
+}
+
+    .dropdown-item:hover {
+        background-color: #f1f3f5;
+    }
+
+    .dropdown-item.text-danger:hover {
+        background-color: #ffe3e3;
+    }
+
+/*Class for welcome card*/
+
+.welcome-card {
+    position: relative;
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    color: #fff;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, rgba(0,123,255,0.9), rgba(51,154,240,0.5));
+    border: 1px solid rgba(255,255,255,0.15);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+    backdrop-filter: blur(10px) saturate(120%);
+    box-shadow: 0 18px 40px rgba(11,22,40,0.22), 0 6px 14px rgba(11,22,40,0.12);
+    transition: all 0.25s ease;
+}
+
+    .welcome-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 28px 60px rgba(11,22,40,0.28), 0 8px 18px rgba(11,22,40,0.16);
+    }
+
+    /* Gloss highlight */
+    .welcome-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.00) 40%);
+        mix-blend-mode: overlay;
+        pointer-events: none;
+    }
+
+    /* Typography */
+    .welcome-card h4 {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .welcome-card p {
+        font-size: 0.95rem;
+        opacity: 0.9;
+        margin-bottom: 1.5rem;
+    }
+
+    /* "Create Complaint" button area */
+    .welcome-card .action-area {
+        position: absolute;
+        right: 1.5rem;
+        bottom: 1.5rem;
+    }
+
+/* Glass button styling */
+.btn-glass {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    font-weight: 500;
+    backdrop-filter: blur(6px);
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+    .btn-glass:hover {
+        background: rgba(255,255,255,0.25);
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        transform: translateY(-2px);
+    }
+
+.username {
+    font-weight: 700;
+    color: #e3f2fd;
+}
+
+
